@@ -1291,6 +1291,7 @@ void AsyncWebSocketResponse::_respond(AsyncWebServerRequest *request){
 
 size_t AsyncWebSocketResponse::_ack(AsyncWebServerRequest *request, size_t len, uint32_t time){
   (void)time;
+  _server->cleanupClients(); // ADD THIS see https://github.com/me-no-dev/ESPAsyncWebServer/issues/811
   if(len){
     new AsyncWebSocketClient(request, _server);
   }
